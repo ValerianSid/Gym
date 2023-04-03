@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=gym
+    username: postgres
+    password: root
+
+  flyway:
+    locations: "classpath:db.migrations"
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: root
+    driverClassName: org.postgresql.Driver
+    defaultSchema: gym
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: validate
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
