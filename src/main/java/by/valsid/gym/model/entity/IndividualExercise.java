@@ -11,9 +11,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Training_Programm_Exercise {
+public class IndividualExercise {
 
-    private static final String SEQ_NAME = "training_programm_exercise_id";
+    private static final String SEQ_NAME = "individual_exercise_id_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
@@ -22,6 +22,12 @@ public class Training_Programm_Exercise {
 
     String description;
 
+    Short repeats;
+
+    Short executionTime;
+
+    Float weight;
+
     @ManyToOne
-    TrainingProgramm trainingProgramm;
+    IndividualTrainingProgramm individualTrainingProgramm;
 }

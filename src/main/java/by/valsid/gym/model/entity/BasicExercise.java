@@ -13,7 +13,7 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class BasicExercise {
 
-    private static final String SEQ_NAME = "basic_exercise_id";
+    private static final String SEQ_NAME = "basic_exercise_id_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)

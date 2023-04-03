@@ -1,7 +1,7 @@
 CREATE TABLE gym.gym_user (
     id bigserial primary key,
     name varchar(255),
-    uuii uuid,
+    uuid uuid,
     phone varchar(255),
     email varchar(255),
     role varchar(255),
@@ -24,7 +24,8 @@ CREATE TABLE gym.training_programm (
 CREATE TABLE gym.training_programm_exercise (
     id bigserial primary key,
     description varchar(255),
-    basic_exercise_id bigint references basic_exercise(id)
+    basic_exercise_id bigint references basic_exercise(id),
+    training_programm_id bigint references training_programm(id)
 );
 
 CREATE TABLE gym.individual_training_programm (

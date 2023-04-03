@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Individual_Training_Programm {
+public class IndividualTrainingProgramm {
 
     private static final String SEQ_NAME = "individual_training_programm_id_seq";
     @Id
@@ -26,4 +26,12 @@ public class Individual_Training_Programm {
 
     @ManyToOne
     GymUser gymUser;
+
+    @OneToMany
+    @JoinColumn(name = "individual_training_programm_id")
+    List<IndividualExercise> individualExerciseList;
+
+    @OneToMany
+            @JoinColumn(name = "individual_training_programm_id")
+    List<CompleteTraining> completeTrainingList;
 }

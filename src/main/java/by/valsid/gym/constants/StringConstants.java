@@ -9,4 +9,6 @@ public class StringConstants {
     public static final String TRAINING_WAS_CREATED = "Тренировка успешно добавлена";
 
     public static final String TRAINING_WAS_ADDED = "Тренировка успешно добавлена в мои тренировки";
+
+    public static final String EXERCISE_LIST_EMPTY = "Упражнения не найдены";
 }

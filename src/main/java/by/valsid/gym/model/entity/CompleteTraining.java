@@ -4,7 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -12,18 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TrainingProgramm {
+public class CompleteTraining {
 
-    private static final String SEQ_NAME = "training_programm_id_seq";
+    private static final String SEQ_NAME = "complete_training_id_seq";
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
     @SequenceGenerator(name = SEQ_NAME, sequenceName = SEQ_NAME, allocationSize = 1)
     Long id;
 
-    String name;
+    LocalDate executionDate;
 
-    String description;
-    @OneToMany
-    @JoinColumn(name = "training_programm_id")
-    List<TrainingProgrammExercise> trainingProgrammExerciseList;
+    @ManyToOne
+    IndividualTrainingProgramm individualTrainingProgramm;
 }

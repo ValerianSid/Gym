@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,7 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class GymUser {
 
-    private static final String SEQ_NAME = "gym_user_id";
+    private static final String SEQ_NAME = "gym_user_id_seq";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SEQ_NAME)
@@ -33,10 +34,10 @@ public class GymUser {
 
     String role;
 
-    String lastEntry;
+    LocalDate lastEntry;
 
     @OneToMany
     @JoinColumn(name = "gym_user_id")
-    List<Individual_Training_Programm> individualTrainingProgrammList;
+    List<IndividualTrainingProgramm> individualTrainingProgrammList;
 
 }
