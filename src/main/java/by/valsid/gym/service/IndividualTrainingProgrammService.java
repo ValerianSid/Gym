@@ -4,9 +4,11 @@ import by.valsid.gym.constants.StringConstants;
 import by.valsid.gym.exceptions.TrainingNotFound;
 import by.valsid.gym.model.dto.IndividualTrainingProgrammDto;
 import by.valsid.gym.model.dto.TrainingProgrammDto;
+import by.valsid.gym.model.entity.IndividualExercise;
 import by.valsid.gym.model.entity.IndividualTrainingProgramm;
 import by.valsid.gym.model.entity.TrainingProgrammExercise;
 import by.valsid.gym.model.mapping.IndividualTrainingProgrammMapper;
+import by.valsid.gym.model.mapping.TrainingProgrammMapper;
 import by.valsid.gym.repository.IndividualTrainingProgrammRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,8 @@ public class IndividualTrainingProgrammService {
 
     IndividualTrainingProgrammMapper individualTrainingProgrammMapper;
 
+    TrainingProgrammMapper trainingProgrammMapper;
+
     IndividualTrainingProgrammRepository individualTrainingProgrammRepository;
 
     IndividualExerciseService individualExerciseService;
@@ -34,24 +38,13 @@ public class IndividualTrainingProgrammService {
 
     //добавить пользователя
     public String addTrainingProgrammToMy(TrainingProgrammDto trainingProgrammDto){
-        individualTrainingProgrammRepository.save(IndividualTrainingProgramm.builder()
+        List<IndividualExercise> excersizes = trainingProgrammMapper.toIndividualExcersize(trainingProgrammDto.getTrainingProgrammExerciseList());
+        IndividualTrainingProgramm individualTrainingProgramm = individualTrainingProgrammRepository.save(IndividualTrainingProgramm.builder()
                 .name(trainingProgrammDto.getName())
                 .name(trainingProgrammDto.getDescription())
                 .description(trainingProgrammDto.getDescription())
+                .individualExerciseList(excersizes)
                 .build());
-        Optional<IndividualTrainingProgramm> individualTrainingProgrammOptional = individualTrainingProgrammRepository.findByName(trainingProgrammDto.getName());
-        if (individualTrainingProgrammOptional.isEmpty()){
-            throw new TrainingNotFound();
-        }
-        IndividualTrainingProgramm individualTrainingProgramm = IndividualTrainingProgramm.builder()
-                .id(individualTrainingProgrammOptional.get().getId())
-                .name(individualTrainingProgrammOptional.get().getName())
-                .description(individualTrainingProgrammOptional.get().getDescription())
-                .build();
-        List<TrainingProgrammExercise> trainingProgrammExerciseList = trainingProgrammDto.getTrainingProgrammExerciseList();
-        for (TrainingProgrammExercise trainingProgrammExercise : trainingProgrammExerciseList){
-            individualExerciseService.addFromTrainingExercise(trainingProgrammExercise, individualTrainingProgramm);
-        }
         return StringConstants.TRAINING_WAS_ADDED;
     }
 }

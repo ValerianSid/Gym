@@ -27,7 +27,7 @@ public class IndividualTrainingProgramm {
     @ManyToOne
     GymUser gymUser;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "individual_training_programm_id")
     List<IndividualExercise> individualExerciseList;
 
