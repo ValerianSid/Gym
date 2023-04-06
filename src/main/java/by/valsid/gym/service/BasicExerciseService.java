@@ -35,10 +35,8 @@ public class BasicExerciseService {
         if (basicExerciseList.isEmpty()){
             throw new ExerciseNotFound();
         }
-        else {
-            for (BasicExercise basicExercise : basicExerciseList) {
+        for (BasicExercise basicExercise : basicExerciseList) {
                 basicExerciseDtoList.add(basicExerciseMapper.toDto(basicExercise));
-            }
         }
         return basicExerciseDtoList;
     }
@@ -46,10 +44,10 @@ public class BasicExerciseService {
     public List<BasicExerciseDto> showByMuscleGroup(String muscleGroup){
         List<BasicExercise> basicExerciseList = basicExerciseRepository.findByMuscleGroup(muscleGroup);
         List<BasicExerciseDto> basicExerciseDtoList = new ArrayList<>();
-        if (basicExerciseList.isEmpty()){
+        if (basicExerciseList.isEmpty()) {
             throw new ExerciseNotFound();
         }
-        for (BasicExercise basicExercise : basicExerciseList){
+        for (BasicExercise basicExercise : basicExerciseList) {
             basicExerciseDtoList.add(basicExerciseMapper.toDto(basicExercise));
         }
         return basicExerciseDtoList;

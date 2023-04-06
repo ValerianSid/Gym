@@ -32,6 +32,6 @@ public class IndividualTrainingProgramm {
     List<IndividualExercise> individualExerciseList;
 
     @OneToMany
-            @JoinColumn(name = "individual_training_programm_id")
+    @JoinColumn(name = "individual_training_programm_id")
     List<CompleteTraining> completeTrainingList;
 }

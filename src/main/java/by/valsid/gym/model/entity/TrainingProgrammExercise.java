@@ -23,5 +23,7 @@ public class TrainingProgrammExercise {
     String description;
 
     @ManyToOne
+    BasicExercise basicExercise;
+    @ManyToOne
     TrainingProgramm trainingProgramm;
 }

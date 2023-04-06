@@ -1,7 +1,7 @@
 package by.valsid.gym.model.dto;
 
-import by.valsid.gym.model.entity.TrainingProgramm;
-import by.valsid.gym.model.entity.TrainingProgrammExercise;
+import by.valsid.gym.model.entity.CompleteTraining;
+import by.valsid.gym.model.entity.IndividualExercise;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class TrainingProgrammDto {
+public class IndividualTrainingProgrammDto {
 
     Long id;
 
@@ -20,5 +20,7 @@ public class TrainingProgrammDto {
 
     String description;
 
-    List<TrainingProgrammExercise> trainingProgrammExerciseList;
+    List<IndividualExercise> individualExerciseList;
+
+    List<CompleteTraining> completeTrainingList;
 }
