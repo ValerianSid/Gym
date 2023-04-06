@@ -32,13 +32,25 @@ public class BasicExerciseService {
     public List<BasicExerciseDto> showAllExercises(){
         List<BasicExerciseDto> basicExerciseDtoList = new ArrayList<>();
         List<BasicExercise> basicExerciseList = basicExerciseRepository.findAll();
-        if (basicExerciseList == null){
+        if (basicExerciseList.isEmpty()){
             throw new ExerciseNotFound();
         }
         else {
             for (BasicExercise basicExercise : basicExerciseList) {
                 basicExerciseDtoList.add(basicExerciseMapper.toDto(basicExercise));
             }
+        }
+        return basicExerciseDtoList;
+    }
+
+    public List<BasicExerciseDto> showByMuscleGroup(String muscleGroup){
+        List<BasicExercise> basicExerciseList = basicExerciseRepository.findByMuscleGroup(muscleGroup);
+        List<BasicExerciseDto> basicExerciseDtoList = new ArrayList<>();
+        if (basicExerciseList.isEmpty()){
+            throw new ExerciseNotFound();
+        }
+        for (BasicExercise basicExercise : basicExerciseList){
+            basicExerciseDtoList.add(basicExerciseMapper.toDto(basicExercise));
         }
         return basicExerciseDtoList;
     }

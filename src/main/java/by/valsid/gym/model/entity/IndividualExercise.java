@@ -30,4 +30,7 @@ public class IndividualExercise {
 
     @ManyToOne
     IndividualTrainingProgramm individualTrainingProgramm;
+
+    @ManyToOne
+    BasicExercise basicExercise;
 }

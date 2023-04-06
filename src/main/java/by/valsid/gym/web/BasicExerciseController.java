@@ -20,7 +20,7 @@ public class BasicExerciseController {
 
         BasicExerciseService basicExerciseService;
 
-        @PutMapping("/createNewExercise")
+        @PostMapping("/createNewExercise")
         public ResponseEntity<String> createNewExercise(@RequestBody BasicExerciseDto basicExerciseDto){
             return ResponseEntity.ok(basicExerciseService.createNewExercise(basicExerciseDto));
         }
@@ -29,4 +29,10 @@ public class BasicExerciseController {
         public ResponseEntity<List<BasicExerciseDto>> showAllExercises(){
             return ResponseEntity.ok(basicExerciseService.showAllExercises());
         }
+
+        @GetMapping("/showByMuscleGroup")
+        public ResponseEntity<List<BasicExerciseDto>> showByMuscleGroup(String muscleGroup){
+            return ResponseEntity.ok(basicExerciseService.showByMuscleGroup(muscleGroup));
+        }
+
 }
