@@ -20,7 +20,7 @@ public class IndividualTrainingProgrammDto {
 
     String description;
 
-    List<IndividualExercise> individualExerciseList;
+    List<IndividualExerciseDto> individualExerciseList;
 
     List<CompleteTraining> completeTrainingList;
 }

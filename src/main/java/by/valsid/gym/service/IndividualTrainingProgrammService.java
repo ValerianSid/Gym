@@ -1,12 +1,10 @@
 package by.valsid.gym.service;
 
 import by.valsid.gym.constants.StringConstants;
-import by.valsid.gym.exceptions.TrainingNotFound;
 import by.valsid.gym.model.dto.IndividualTrainingProgrammDto;
 import by.valsid.gym.model.dto.TrainingProgrammDto;
 import by.valsid.gym.model.entity.IndividualExercise;
 import by.valsid.gym.model.entity.IndividualTrainingProgramm;
-import by.valsid.gym.model.entity.TrainingProgrammExercise;
 import by.valsid.gym.model.mapping.IndividualTrainingProgrammMapper;
 import by.valsid.gym.model.mapping.TrainingProgrammMapper;
 import by.valsid.gym.repository.IndividualTrainingProgrammRepository;
@@ -38,12 +36,12 @@ public class IndividualTrainingProgrammService {
 
     //добавить пользователя
     public String addTrainingProgrammToMy(TrainingProgrammDto trainingProgrammDto){
-        List<IndividualExercise> excersizes = trainingProgrammMapper.toIndividualExcersize(trainingProgrammDto.getTrainingProgrammExerciseList());
+        List<IndividualExercise> excercises = trainingProgrammMapper.toIndividualExcersize(trainingProgrammDto.getTrainingProgrammExerciseList());
         IndividualTrainingProgramm individualTrainingProgramm = individualTrainingProgrammRepository.save(IndividualTrainingProgramm.builder()
                 .name(trainingProgrammDto.getName())
                 .name(trainingProgrammDto.getDescription())
                 .description(trainingProgrammDto.getDescription())
-                .individualExerciseList(excersizes)
+                .individualExerciseList(excercises)
                 .build());
         return StringConstants.TRAINING_WAS_ADDED;
     }
