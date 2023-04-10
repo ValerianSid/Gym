@@ -35,4 +35,9 @@ public class BasicExerciseController {
             return ResponseEntity.ok(basicExerciseService.showByMuscleGroup(muscleGroup));
         }
 
+        @GetMapping("/findByName")
+        public ResponseEntity<BasicExerciseDto> findByName(String name){
+            return ResponseEntity.ok(basicExerciseService.findByName(name));
+        }
+
 }

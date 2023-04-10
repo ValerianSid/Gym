@@ -6,9 +6,12 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/training_prog")
@@ -20,5 +23,10 @@ public class TrainingProgrammController {
     @PostMapping("/createTrainingProg")
     public ResponseEntity<String> createNewTP(TrainingProgrammDto trainingProgrammDto){
         return ResponseEntity.ok(trainingProgrammService.addNewTraining(trainingProgrammDto));
+    }
+
+    @GetMapping("/showAllTrProg")
+    public ResponseEntity<List<TrainingProgrammDto>> showAllProgs(){
+        return ResponseEntity.ok(trainingProgrammService.showAllPrograms());
     }
 }

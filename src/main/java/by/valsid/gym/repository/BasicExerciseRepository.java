@@ -6,10 +6,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BasicExerciseRepository extends JpaRepository<BasicExercise, Long> {
 
     @Query("select be from BasicExercise be where be.muscleGroup = :muscle")
     List<BasicExercise> findByMuscleGroup(String muscle);
+
+    @Query("select be from BasicExercise be where be.name = :name")
+    Optional<BasicExercise> findByName(String name);
 }

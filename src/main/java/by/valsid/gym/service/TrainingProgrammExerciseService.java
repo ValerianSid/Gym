@@ -1,7 +1,10 @@
 package by.valsid.gym.service;
 
+import by.valsid.gym.model.dto.BasicExerciseDto;
 import by.valsid.gym.model.dto.TrainingProgrammDto;
 import by.valsid.gym.model.entity.TrainingProgrammExercise;
+import by.valsid.gym.model.mapping.BasicExerciseMapper;
+import by.valsid.gym.model.mapping.TrainingProgrammMapper;
 import by.valsid.gym.repository.TrainingProgrammExerciseRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -16,5 +19,10 @@ import java.util.List;
 public class TrainingProgrammExerciseService {
 
     TrainingProgrammExerciseRepository trainingProgrammExerciseRepository;
+
+    TrainingProgrammMapper trainingProgrammMapper;
+
+    BasicExerciseMapper basicExerciseMapper;
+
 
 }

@@ -1,6 +1,7 @@
 package by.valsid.gym.service;
 
 import by.valsid.gym.constants.StringConstants;
+import by.valsid.gym.exceptions.ExerciseNotCreated;
 import by.valsid.gym.exceptions.ExerciseNotFound;
 import by.valsid.gym.exceptions.TestException;
 import by.valsid.gym.model.dto.BasicExerciseDto;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -25,7 +27,12 @@ public class BasicExerciseService {
     BasicExerciseRepository basicExerciseRepository;
     public String createNewExercise(BasicExerciseDto basicExerciseDto){
         BasicExercise basicExercise = basicExerciseMapper.toEntity(basicExerciseDto);
-        basicExerciseRepository.save(basicExercise);
+        try{
+            basicExerciseRepository.save(basicExercise);
+        }
+        catch(Exception e){
+            throw new ExerciseNotCreated();
+        }
         return StringConstants.EXERCISE_WAS_CREATED;
     }
 
@@ -51,5 +58,13 @@ public class BasicExerciseService {
             basicExerciseDtoList.add(basicExerciseMapper.toDto(basicExercise));
         }
         return basicExerciseDtoList;
+    }
+
+    public BasicExerciseDto findByName(String name){
+        Optional<BasicExercise> basicExerciseOpt = basicExerciseRepository.findByName(name);
+        if (basicExerciseOpt.isEmpty()){
+            throw new ExerciseNotFound();
+        }
+        return basicExerciseMapper.toDto(basicExerciseOpt.get());
     }
 }
