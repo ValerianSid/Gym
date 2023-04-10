@@ -21,10 +21,6 @@ import java.util.Map;
 public class IndividualTrainingProgrammController {
 
     IndividualTrainingProgrammService individualTrainingProgrammService;
-    @PostMapping("/createMyProgramm")
-    public ResponseEntity<String> createMyProgramm(IndividualTrainingProgrammDto individualTrainingProgrammDto){
-        return ResponseEntity.ok(individualTrainingProgrammService.createMyTraining(individualTrainingProgrammDto));
-    }
 
     @PostMapping("/addIndTraining")
     public ResponseEntity<String> addIndTraining(TrainingProgrammDto trainingProgrammDto){
