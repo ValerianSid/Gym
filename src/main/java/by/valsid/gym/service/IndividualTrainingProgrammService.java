@@ -36,24 +36,6 @@ public class IndividualTrainingProgrammService {
     IndividualExerciseService individualExerciseService;
 
 
-    //добавить пользователя
-    public String addTrainingProgrammToMy(TrainingProgrammDto trainingProgrammDto){
-        List<IndividualExercise> excercises = trainingProgrammMapper.toIndividualExcersize(trainingProgrammDto.getTrainingProgrammExerciseList());
-        try {
-            individualTrainingProgrammRepository.save(IndividualTrainingProgramm.builder()
-                    .name(trainingProgrammDto.getName())
-                    .name(trainingProgrammDto.getDescription())
-                    .description(trainingProgrammDto.getDescription())
-                    .individualExerciseList(excercises)
-                    .build());
-        }
-        catch (Exception e){
-            log.error(e.getMessage(), e); //для проверки какая конкретно ошибка
-            throw new TrainingNotAdded();
-        }
-        return StringConstants.TRAINING_WAS_ADDED;
-    }
-
     public String createMyTrProg(IndividualTrainingProgrammDto individualTrainingProgrammDto){
         try{
             individualTrainingProgrammRepository.save(individualTrainingProgrammMapper.toEntity(individualTrainingProgrammDto));
@@ -71,25 +53,20 @@ public class IndividualTrainingProgrammService {
         return StringConstants.EXERCISE_WAS_CREATED;
     }
 
-
-
-   /* public String createMyOwnTraining(IndividualTrainingProgrammDto individualTrainingProgrammDto, Map<BasicExerciseDto, String> exerciseMap){
-        List<IndividualExercise> individualExerciseList  = new ArrayList<>();
-        exerciseMap.forEach((basicExerciseDto, description) ->{
-            individualExerciseList.add(IndividualExercise.builder()
-                    .description(description)
-                    .basicExercise(basicExerciseMapper.toEntity(basicExerciseDto))
+    public String addTrainingProgrammToMy(TrainingProgrammDto trainingProgrammDto){
+        List<IndividualExercise> excercises = trainingProgrammMapper.toIndividualExcersize(trainingProgrammDto.getTrainingProgrammExerciseList());
+        try {
+            individualTrainingProgrammRepository.save(IndividualTrainingProgramm.builder()
+                    .name(trainingProgrammDto.getName())
+                    .name(trainingProgrammDto.getDescription())
+                    .description(trainingProgrammDto.getDescription())
+                    .individualExerciseList(excercises)
                     .build());
-        });
-        try{
-            IndividualTrainingProgramm individualTrainingProgramm = individualTrainingProgrammMapper.toEntity(individualTrainingProgrammDto);
-            individualTrainingProgramm.setIndividualExerciseList(individualExerciseList);
-            individualTrainingProgrammRepository.save(individualTrainingProgramm);
         }
         catch (Exception e){
-            log.error(e.getMessage(), e);
+            log.error(e.getMessage(), e); //для проверки какая конкретно ошибка
             throw new TrainingNotAdded();
         }
         return StringConstants.TRAINING_WAS_ADDED;
-    }*/
+    }
 }

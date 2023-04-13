@@ -41,7 +41,8 @@ CREATE TABLE gym.individual_exercise (
     repeats smallint,
     execution_time smallint,
     weight real,
-    individual_training_programm_id bigint references individual_training_programm(id)
+    individual_training_programm_id bigint references individual_training_programm(id),
+    basic_exercise_id bigint references basic_exercise(id)
 );
 
 CREATE TABLE gym.complete_training (

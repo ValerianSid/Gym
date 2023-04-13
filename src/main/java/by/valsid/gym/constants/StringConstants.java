@@ -22,4 +22,8 @@ public class StringConstants {
 
     public static final String USER_NOT_FOUND = "Такой пользователь не найден";
 
+    public static final String TRAINING_NOT_COMPLETED = "Тренировка не завершена";
+
+    public static final String TRAINING_COMPLETED = "Тренировка завершена";
+
 }

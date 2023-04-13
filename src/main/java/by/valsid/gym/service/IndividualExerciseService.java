@@ -2,6 +2,7 @@ package by.valsid.gym.service;
 
 import by.valsid.gym.constants.StringConstants;
 import by.valsid.gym.exceptions.ExerciseNotCreated;
+import by.valsid.gym.exceptions.ExerciseNotFound;
 import by.valsid.gym.model.dto.BasicExerciseDto;
 import by.valsid.gym.model.dto.IndividualExerciseDto;
 import by.valsid.gym.model.dto.IndividualTrainingProgrammDto;
@@ -18,6 +19,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -56,5 +60,17 @@ public class IndividualExerciseService {
 
     public void completeTrainingExercise(IndividualExerciseDto individualExerciseDto){
         individualExerciseRepository.save(individualExerciseMapper.toEntity(individualExerciseDto));
+    }
+
+    public List<IndividualExerciseDto> showExByTrPrg(Long indTrProgId){
+        List<IndividualExercise> individualExerciseList = individualExerciseRepository.findByTrProg(indTrProgId);
+        List<IndividualExerciseDto> individualExerciseDtoList = new ArrayList<>();
+        for(IndividualExercise individualExercise : individualExerciseList){
+            individualExerciseDtoList.add(individualExerciseMapper.toDto(individualExercise));
+        }
+        if (individualExerciseDtoList.isEmpty()){
+            throw new ExerciseNotFound();
+        }
+        return individualExerciseDtoList;
     }
 }
