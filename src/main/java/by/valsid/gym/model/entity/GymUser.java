@@ -40,4 +40,7 @@ public class GymUser {
     @JoinColumn(name = "gym_user_id")
     List<IndividualTrainingProgramm> individualTrainingProgrammList;
 
+    @OneToMany(mappedBy = "gymUser", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<Authority> authorities;
+
 }

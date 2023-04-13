@@ -50,3 +50,15 @@ CREATE TABLE gym.complete_training (
     execution_date date,
     individual_training_programm_id bigint references individual_training_programm(id)
 );
+
+CREATE TABLE gym.authority (
+    id bigserial primary key,
+    authority character varying(255),
+    gym_user_id bigint references gym_user(id)
+);
+
+CREATE TABLE organizer.authority (
+    id bigserial primary key,
+    authority character varying(255),
+    gym_user_id bigint references gym_user(id)
+);

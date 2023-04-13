@@ -12,4 +12,6 @@ public interface GymUserRepository extends JpaRepository<GymUser, Long> {
 
     @Query("select gu from GymUser gu where gu.phone = :phoneNumber")
     Optional<GymUser> findByPhone(String phoneNumber);
+
+    Optional<GymUser> findByLogin(final String login);
 }
