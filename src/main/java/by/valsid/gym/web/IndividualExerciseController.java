@@ -18,8 +18,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class IndividualExerciseController {
 
     IndividualExerciseService individualExerciseService;
-    @PostMapping("/addExerciseToTrProg")
-    public ResponseEntity<String> addToTrProg(IndividualTrainingProgrammDto individualTrainingProgrammDto, BasicExerciseDto basicExerciseDto, String description){
-        return ResponseEntity.ok(individualExerciseService.addToIndTrProg(individualTrainingProgrammDto, basicExerciseDto, description));
-    }
+
 }

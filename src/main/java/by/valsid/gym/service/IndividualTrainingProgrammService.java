@@ -33,7 +33,7 @@ public class IndividualTrainingProgrammService {
 
     IndividualTrainingProgrammRepository individualTrainingProgrammRepository;
 
-    BasicExerciseMapper basicExerciseMapper;
+    IndividualExerciseService individualExerciseService;
 
 
     //добавить пользователя
@@ -54,7 +54,26 @@ public class IndividualTrainingProgrammService {
         return StringConstants.TRAINING_WAS_ADDED;
     }
 
-    public String createMyOwnTraining(IndividualTrainingProgrammDto individualTrainingProgrammDto, Map<BasicExerciseDto, String> exerciseMap){
+    public String createMyTrProg(IndividualTrainingProgrammDto individualTrainingProgrammDto){
+        try{
+            individualTrainingProgrammRepository.save(individualTrainingProgrammMapper.toEntity(individualTrainingProgrammDto));
+        }
+        catch (Exception e){
+            log.error(e.getMessage(), e);
+            throw new TrainingNotAdded();
+        }
+        return StringConstants.TRAINING_NOT_CREATED;
+    }
+
+    public String addExerciseToTrProg(Long indTrProgId, Long basicExId, String description){
+            individualExerciseService.addToIndTrProg(individualTrainingProgrammRepository.findById(indTrProgId).get(),
+                    basicExId, description);
+        return StringConstants.EXERCISE_WAS_CREATED;
+    }
+
+
+
+   /* public String createMyOwnTraining(IndividualTrainingProgrammDto individualTrainingProgrammDto, Map<BasicExerciseDto, String> exerciseMap){
         List<IndividualExercise> individualExerciseList  = new ArrayList<>();
         exerciseMap.forEach((basicExerciseDto, description) ->{
             individualExerciseList.add(IndividualExercise.builder()
@@ -72,5 +91,5 @@ public class IndividualTrainingProgrammService {
             throw new TrainingNotAdded();
         }
         return StringConstants.TRAINING_WAS_ADDED;
-    }
+    }*/
 }

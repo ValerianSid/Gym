@@ -29,4 +29,9 @@ public class TrainingProgrammController {
     public ResponseEntity<List<TrainingProgrammDto>> showAllProgs(){
         return ResponseEntity.ok(trainingProgrammService.showAllPrograms());
     }
+
+    @PostMapping("/addExerciseToTrProg")
+    public  ResponseEntity<String> addExerciseToTrProg(Long trProgId, Long basicExId, String description){
+        return ResponseEntity.ok(trainingProgrammService.addExerciseToTraining(trProgId, basicExId, description));
+    }
 }

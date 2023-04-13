@@ -27,8 +27,13 @@ public class IndividualTrainingProgrammController {
         return ResponseEntity.ok(individualTrainingProgrammService.addTrainingProgrammToMy(trainingProgrammDto));
     }
 
+    @PostMapping("/addExToTrProg")
+    public ResponseEntity<String> addExToTrProg(Long indTrProgId, Long basicExId, String description){
+        return ResponseEntity.ok(individualTrainingProgrammService.addExerciseToTrProg(indTrProgId, basicExId, description));
+    }
+
     @PostMapping("/createMyTrainnig")
-    public ResponseEntity<String> createMyTraining(IndividualTrainingProgrammDto individualTrainingProgrammDto, Map<BasicExerciseDto, String> exrciseMap){
-        return ResponseEntity.ok(individualTrainingProgrammService.createMyOwnTraining(individualTrainingProgrammDto, exrciseMap));
+    public ResponseEntity<String> createMyTraining(IndividualTrainingProgrammDto individualTrainingProgrammDto){
+        return ResponseEntity.ok(individualTrainingProgrammService.createMyTrProg(individualTrainingProgrammDto));
     }
 }
